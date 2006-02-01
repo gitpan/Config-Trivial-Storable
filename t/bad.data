@@ -1,0 +1,5 @@
+#	$Id: bad.data,v 1.1.1.1 2006-02-01 21:46:33 adam Exp $
+#	This is a comment!
+
+test1	foo
+test1	bar
