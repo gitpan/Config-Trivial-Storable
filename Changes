@@ -1,6 +1,15 @@
-$Id: Changes,v 1.1.1.1 2006-02-01 21:46:33 adam Exp $
+$Id: Changes,v 1.6 2006-02-05 19:50:04 adam Exp $
 
 Revision history for Perl extension Config::Trivial::Storable
 
+0.20 05 Feb 2006
+    -   Fix Manifest bug (RT# 17439)
+    -   Fix t/80-warn.t bug (RT# 17443)
+    -   More and better tests
+    -   Fix for determining if the config file is the self file
+    -   Add new set_storable_file method
+    -   Run Code through Perltidy using PBP guidelines
+    -   Started work on magic retrieve
+
 0.10 01 Feb 2006
-	- Created from Config::Trivial
+    -   Created from Config::Trivial
