@@ -1,8 +1,152 @@
-#	$Id: Storable.pm,v 1.4 2006-02-05 18:01:09 adam Exp $
+#	$Id: Storable.pm,v 1.9 2007-02-03 15:23:19 adam Exp $
+
+package Config::Trivial::Storable;
+
+use base qw( Config::Trivial );
+
+use 5.006;
+use strict;
+use Carp;
+use warnings;
+use Storable qw(lock_store lock_retrieve);
+
+our $VERSION = '0.30';
+my ( $_package, $_file ) = caller;
+
+#
+#	STORE
+#
+
+sub store {
+    my $self = shift;
+    my %args = @_;
+
+    my $file = $args{'config_file'}
+        || $self->{_storable_file}
+        || $self->{_config_file};
+
+    if (   ( ( $self->{_self} ) && ( $file =~ '\(eval ' ) )
+        || ( $_file eq $file )
+        || ( $0     eq $file ) )
+    {
+        return $self->_raise_error(
+            'Not allowed to store to the calling file.');
+    }
+
+    if ( -e $file ) {
+        croak "ERROR: Insufficient permissions to write to: $file"
+            unless ( -w $file );
+        rename $file, $file . $self->{_backup_char}
+            or croak "ERROR: Unable to rename $file.";
+    }
+
+    my $settings = $args{'configuration'} || $self->{_configuration};
+
+    if ( ! ( $settings && ref $settings eq 'HASH') ) {
+        return $self->_raise_error(
+            q{Configuration object isn't a HASH reference.})
+    };
+
+    lock_store $settings, $file;
+
+    return 1;
+}
+
+#
+#	RETRIEVE
+#
+
+sub retrieve {
+    my $self = shift;
+    my $key  = shift;    # If there is a key, return only it's value
+    my $retrieved_hash_ref;
+    my $file;
+
+    if ( $self->{_config_file} && $self->{_storable_file} ) {
+        if ( $self->{_config_file} eq $self->{_storable_file} ) {
+            $file = $self->{_config_file};
+        }
+        elsif ( ( stat $self->{_config_file} )[9]
+            > ( stat $self->{_storable_file} )[9] )
+        {
+            return $self->read($key) if $key;
+            return $self->read;
+        }
+        else {
+            $file = $self->{_storable_file};
+        }
+    }
+    else {
+        if ( $self->{_storable_file} ) {
+            $file = $self->{_storable_file};
+        }
+        else {
+            if ((      ( $self->{_self} )
+                    && ( defined $self->{_config_file} )
+                    && ( $self->{_config_file} =~ '\(eval ' )
+                )
+                || ( $_file eq $self->{_config_file} )
+                || ( $0     eq $self->{_config_file} )
+                )
+            {
+                return $self->_raise_error(
+                    q{Can't retrieve store from the calling file.});
+            }
+            $file = $self->{_config_file};
+        }
+    }
+
+    return unless $self->_check_file($file);
+
+    eval { $retrieved_hash_ref = lock_retrieve($file); };
+
+    if ($@) {
+        croak "ERROR: $@";
+    }
+
+    if ( ! ( $retrieved_hash_ref && ref $retrieved_hash_ref eq 'HASH') ) {
+        return $self->_raise_error(
+            q{Retrieved object isn't a HASH reference.})
+    };
+
+    $self->{_configuration} = $retrieved_hash_ref;
+
+    return $self->{_configuration}->{$key} if $key;
+    return $self->{_configuration};
+}
+
+#
+#   SET STORABLE FILE
+#
+
+sub set_storable_file {
+    my $self               = shift;
+    my $configuration_file = shift;
+
+    if ( $self->_check_file($configuration_file) ) {
+        $self->{_storable_file} = $configuration_file;
+        $self->{_self}          = 0;
+        if ( $self->{_config_file} =~ '\(eval ' ) {
+            delete $self->{_config_file};
+        }
+        return $self;
+    }
+    else {
+        return;
+    }
+}
+
+1;
+
+__END__
 
 =head1 NAME
 
 Config::Trivial::Storable - Very simple tool for reading and writing very simple Storable configuration files
+
+=head1 VERSION
+
+This documentation refers to Config::Trivial::Storable version 0.30
 
 =head1 SYNOPSIS
 
@@ -19,24 +163,7 @@ Use this module when you want use "Yet Another" very simple, light
 weight configuration file reader. The module extends Config::Trivial
 by providing Storable Support. See those modules for more details.
 
-=cut
-
-package Config::Trivial::Storable;
-
-use base qw( Config::Trivial );
-
-use 5.006;
-use strict;
-use Carp;
-use warnings;
-use Storable qw(lock_store lock_retrieve);
-
-our $VERSION = "0.20";
-my ( $_package, $_file ) = caller;
-
-#
-#	STORE
-#
+=head1 SUBROUTINES/METHODS
 
 =head2 store
 
@@ -62,40 +189,6 @@ To store data in the internal use the set_configuration data
 method. The option to pass a hash_ref in this method may
 be removed in future versions.
 
-=cut
-
-sub store {
-    my $self = shift;
-    my %args = @_;
-
-    my $file = $args{"config_file"} || $self->{_config_file};
-
-    if (   ( ( $self->{_self} ) && ( $file eq "(eval 1)" ) )
-        || ( $_file eq $file )
-        || ( $0     eq $file ) )
-    {
-        return $self->_raise_error(
-            "Not allowed to store to the calling file.");
-    }
-
-    if ( -e $file ) {
-        croak "ERROR: Insufficient permissions to write to: $file"
-            unless ( -w $file );
-        rename $file, $file . $self->{_backup_char}
-            or croak "ERROR: Unable to rename $file.";
-    }
-
-    my $settings = $args{"configuration"} || $self->{_configuration};
-
-    lock_store $settings, $file;
-
-    return 1;
-}
-
-#
-#	RETRIEVE
-#
-
 =head2 retrieve
 
 This is the analog to read, only it reads data from a Storable binary.
@@ -108,97 +201,12 @@ version is newer then that will be used instead. Thus you can easily
 edit the text version and any code using this module will automatically
 switch to using it.
 
-=cut
-
-sub retrieve {
-    my $self = shift;
-    my $key  = shift;    # If there is a key, return only it's value
-    my $retrieved_hash_ref;
-    my $file;
-
-    if ( $self->{_config_file} && $self->{_storable_file} ) {
-        if ( $self->{_config_file} eq $self->{_storable_file} ) {
-            $file = $self->{_config_file};
-        }
-        elsif ( ( stat( $self->{_config_file} ) )[9]
-            > ( stat( $self->{_storable_file} ) )[9] )
-        {
-            return $self->read($key) if $key;
-            return $self->read;
-        }
-        else {
-            $file = $self->{_storable_file};
-        }
-    }
-    else {
-        if ( $self->{_storable_file} ) {
-            $file = $self->{_storable_file};
-        }
-        else {
-            if ((      ( $self->{_self} )
-                    && ( defined( $self->{_config_file} ) )
-                    && ( $self->{_config_file} eq "(eval 1)" )
-                )
-                || ( $_file eq $self->{_config_file} )
-                || ( $0     eq $self->{_config_file} )
-                )
-            {
-                return $self->_raise_error(
-                    "Can't retrieve store from the calling file.");
-            }
-            $file = $self->{_config_file};
-        }
-    }
-
-    return undef unless $self->_check_file($file);
-
-    eval { $retrieved_hash_ref = lock_retrieve($file); };
-
-    if ($@) {
-        croak "ERROR: $@";
-    }
-
-    return undef unless $retrieved_hash_ref;
-
-    $self->{_configuration} = $retrieved_hash_ref;
-
-    return $self->{_configuration}->{$key} if $key;
-    return $self->{_configuration};
-}
-
-#
-#   SET STORABLE FILE
-#
-
 =head2 set_storable_file
 
 If you want to explicitly set the file name of a storable file
 you may use this method. If you set a file name by both set_storable_file
 and set_config_file, then the retrieve method will "magically" decided
 which to use. The read method will ignore any storable settings.
-
-=cut
-
-sub set_storable_file {
-    my $self               = shift;
-    my $configuration_file = shift;
-
-    if ( $self->_check_file($configuration_file) ) {
-        $self->{_storable_file} = $configuration_file;
-        $self->{_self}          = 0;
-        if ( $self->{_config_file} eq "(eval 1)" ) {
-            delete( $self->{_config_file} );
-        }
-        return $self;
-    }
-    else {
-        return undef;
-    }
-}
-
-1;
-
-__END__
 
 =head1 CONFIG FORMAT
 
@@ -216,22 +224,22 @@ without the use of any particular configuration module.
 This module extends C<Config::Trivial> so that they can be used to quickly
 read configuration in one format and convert to another.
 
-=head1 MISC
-
-=head2 Prerequisites
+=head1 DEPENDENCIES
 
 At the moment the module only uses core modules, plus C<Config::Trivial>
-The test suite optionally uses C<POD::Coverage>, C<Tes::Pod::Coverage>,
+The test suite optionally uses C<POD::Coverage>, C<Test::Pod::Coverage>,
 C<Test::Pod> and C<IO::Warnings> which will be skipped if you do not
 have them.
+
+=head1 BUGS AND LIMITATIONS
+
+Patches very welcome... ;-)
+
+=head1 MISC
 
 =head2 History
 
 See Changes file.
-
-=head2 Defects and Limitations
-
-Patches very welcome... ;-)
 
 =head1 EXPORT
 
@@ -245,9 +253,9 @@ Adam Trickett, E<lt>atrickett@cpan.orgE<gt>
 
 L<perl>, L<Config::Trivial>, L<Storable>.
 
-=head1 COPYRIGHT
+=head1 LICENSE AND COPYRIGHT
 
-This version as C<Config::Trivial::Storable>, Copyright iredale consulting 2006
+This version as C<Config::Trivial::Storable>, Copyright iredale consulting 2006-2007
 
 OSI Certified Open Source Software.
 

@@ -1,6 +1,19 @@
-$Id: Changes,v 1.6 2006-02-05 19:50:04 adam Exp $
+$Id: Changes,v 1.10 2007-02-03 15:23:12 adam Exp $
 
 Revision history for Perl extension Config::Trivial::Storable
+
+0.30 03 Feb 2007
+    -   Storing now controlled with set_storable_file method
+    -   PBP Guidelines adopted
+        -   POD Reordered in-line with PBP guidelines
+        -   Code swept with Perltidy
+        -   Used Perl::Critic to check for PBP deviations
+    -   Test suite updated
+        -   Updated for 0.60 version of Config::Trivial
+        -   Using MANTIFEST.SKIP to keep MANIFEST correct
+        -   Automatically testing the META.yml file
+        -   Improved test coverage
+    -   Crypto signature added
 
 0.20 05 Feb 2006
     -   Fix Manifest bug (RT# 17439)
