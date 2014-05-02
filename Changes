@@ -1,6 +1,17 @@
-$Id: Changes,v 1.10 2007-02-03 15:23:12 adam Exp $
+$Id: Changes 46 2014-05-02 11:22:14Z adam $
 
 Revision history for Perl extension Config::Trivial::Storable
+
+0.31_1 02 May 2014
+    -   Minumum version of Perl 5.10 as I nolonger have access to
+        older perls
+    -   Build/test fixes
+    -   More tests
+    -   Switched to SVN from CVS
+    -   Added example code
+    -   Added rudimentory Module::Build built Makefile.PL
+    -   Changes to test auto-detection and skip rules (thanks to Corion)
+    -   Module code unchanged
 
 0.30 03 Feb 2007
     -   Storing now controlled with set_storable_file method

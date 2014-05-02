@@ -1,8 +1,21 @@
-#	$Id: 90-pod.t,v 1.1.1.1 2006-02-01 21:46:33 adam Exp $
+#	$Id: 90-pod.t 49 2014-05-02 11:30:14Z adam $
 
 use strict;
-use Test::More tests => 1;
-use Test::Pod;
 
-pod_file_ok("./lib/Config/Trivial/Storable.pm", "Valid POD file" );
+my $run_tests;
+
+BEGIN {
+    $run_tests = eval { require Test::Pod; };
+};
+
+use Test::More;
+
+if (! $run_tests ) {
+    plan skip_all => 'Test::Pod not installed, skipping test.';
+}
+else {
+    plan tests => 1;
+}
+
+Test::Pod::pod_file_ok("./lib/Config/Trivial/Storable.pm", "Valid POD file" );
 

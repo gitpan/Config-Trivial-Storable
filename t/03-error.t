@@ -1,4 +1,4 @@
-#	$Id: 03-error.t,v 1.5 2007-02-03 15:23:30 adam Exp $
+#   $Id: 03-error.t 49 2014-05-02 11:30:14Z adam $
 use strict;
 use Test;
 use Storable qw(lock_store);
@@ -15,11 +15,11 @@ ok(lock_store \$duff, $file);
 ok(-e $file);
 
 #
-#	Basic Constructor
+#   Basic Constructor
 #
-my $config = Config::Trivial::Storable->new;
+my $config = Config::Trivial::Storable->new();
 my @array=();
-my %hash = (file => "./t/file.that.is.not.there");
+my %hash = ( file => './t/file.that.is.not.there' );
 
 # Try and write to self (4-7)
 ok(! $config->write );
@@ -28,7 +28,7 @@ ok(! $config->store );
 ok($config->get_error(), "Not allowed to store to the calling file.");
 
 # Missing file (8-11)
-ok(! $config->set_config_file("./t/file.that.is.not.there")); 
+ok(! $config->set_config_file("./t/file.that.is.not.there"));
 ok($config->get_error(), "File error: Cannot find ./t/file.that.is.not.there");
 
 ok(! $config->set_config_file(\%hash));

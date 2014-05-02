@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.55.
+signed via the Module::Signature module, version 0.68.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -12,34 +12,45 @@ the distribution may already have been compromised, and you should
 not run its Makefile.PL or Build.PL.
 
 -----BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+Hash: SHA256
 
-SHA1 16bd6c22495047865447d5cb9f3ac6b3171a29e4 Build.PL
-SHA1 3f1852a45d6bb8337a966722ad326b6eec62c1f7 Changes
-SHA1 09e860f618ec6385f6f249e0701e8e0dc2059c0e MANIFEST
-SHA1 312881db095ba64e543ded2dacf9e0b13d350906 META.yml
-SHA1 6a817dcd9fabef4659e4a6043821935e22d3d534 README
-SHA1 785e5e3d8c0008bfb6081484562871e1373544ea lib/Config/Trivial/Storable.pm
-SHA1 0b92b5683d707cac47a0f4ffc8e2370d548dd84f t/00-use.t
-SHA1 8fc716f88c2eb57197e0fcf108a01d17191e6e00 t/01-basic.t
-SHA1 212ad79eea4aa5b9c5998bb7bf64727231c5242e t/02-read.t
-SHA1 d694339e02ff780b67b0189ec79f887f0f7d5d48 t/03-error.t
-SHA1 8ec89a43716c81f8dbc5b032a3b341cb4f27d969 t/04-write.t
-SHA1 c0a39108176d5f54913bc86d288e93a49199c05d t/05-store.t
-SHA1 c39b2ae609277a3361ca21a705e40ba041410b24 t/60-distribution.t
-SHA1 3cd5d70d0beeb3346ed04ee258cd46f1852ba608 t/70-meta-yaml.t
-SHA1 8536b8240a8656df7f8ddafd50aae967acfb0878 t/80-warn.t
-SHA1 f8a84595e53226cb789118d99c67631ae3d2cb01 t/90-pod.t
-SHA1 83aec1709bbe8ef5b7f98805ffe10fe3117c47be t/91-pod.t
-SHA1 1f788ff6f5470e27d8815b9d6abf382309701de7 t/92-pod.t
-SHA1 109e76d2433508c3e1d3cc4d98eef604db4f1d26 t/bad.data
+SHA1 03db46954e688ee2ca86ad0e87a9348ac4f5dc8d Build.PL
+SHA1 0b9ef126085acfc5149503a38ac1e4cd970f54d2 Changes
+SHA1 13e141d47e820d6d2b4e477e1c995ba519b64359 MANIFEST
+SHA1 95d27983c90246bc96d720e81f61bf34e6728429 META.json
+SHA1 879c47c14f5827c6a0d5e8c19d336f344ad216f6 META.yml
+SHA1 963de1be2254ad64b49cf71ab837977adcf79b2b Makefile.PL
+SHA1 d553681cf8f6f546d11fd9a96b27a8fa6b775c66 README
+SHA1 f094ef3b03751e1a02c680bd6761b03c86c40895 examples/example.pl
+SHA1 fc6aee06c7c1ff1f5f64b2d62d84427d7b9565fe lib/Config/Trivial/Storable.pm
+SHA1 dc01d1f2134e72c70ee45b0005bb8d05a980fda0 t/00-signature.t
+SHA1 b39f6160a848b11e9cbdaadcac380f9d47a525a9 t/00-use.t
+SHA1 c7a973d8f3de0d43586723bd3cb153f13ba9ff99 t/01-basic.t
+SHA1 b411acd1cd01309f4e836aeb992c4ed2ee7d53ad t/02-read.t
+SHA1 032ed0a21c7627d3596d827683037056f9e6e0c0 t/03-error.t
+SHA1 bdfbb1d0e407daa332c9684f798daf99a6e629a7 t/04-write.t
+SHA1 dc9f1fd92833721550245912ffa034a89283c2f3 t/05-store.t
+SHA1 0bc4c74b1d073b00a418a80f4c5c71e503858de8 t/60-distribution.t
+SHA1 4fb2980f67c4f3a728351d518c8d0f73135a1ff8 t/61-kwalitee.t
+SHA1 ca4f557b70489d3eb4453d0fd579ea2c6f208d4f t/62-perl-critic.t
+SHA1 0e0f6a87cb51c0b9a3baccfb0f047bdf37bdd4f5 t/70-meta-yaml.t
+SHA1 f69cbe9229556821a8b292ac9023cf8218ade35a t/80-warn.t
+SHA1 7a128da90bba822311c792577dc35d340fa05ef5 t/90-pod.t
+SHA1 f7bf474daefde3f04a4d51db43bd942bf87cb7c2 t/91-pod.t
+SHA1 f7920cc7519ac8c8949572b376635cd7408c16ed t/92-pod.t
+SHA1 f2aa8a4ce50aac49e3c9762b54b08b9022b96a02 t/bad.data
 SHA1 da39a3ee5e6b4b0d3255bfef95601890afd80709 t/empty
-SHA1 b2bc56f403e723b967f92ac0c86f0dcc9b03e9a9 t/second.data
-SHA1 b7f485477115c5c000a09343d26c0eedbd9dca19 t/test.data
+SHA1 86083544f8acad61d59330cc112e51e074849bf4 t/perlcriticrc
+SHA1 dcff37626115d479310382ea54d134316ac070f3 t/second.data
+SHA1 16e43fbdb38ed07e5916004ab5b2808ed11012bc t/test.data
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.6 (GNU/Linux)
+Version: GnuPG v1.4.12 (GNU/Linux)
 
-iD8DBQFFxKtgAZrQ2BZsS/ARAtuIAKCwQClFwiqR5UtGFz4voQ6uYL5NegCgtPbJ
-evqRQUkPRBPWlin22dw09hw=
-=uF5l
+iQEcBAEBCAAGBQJTY45gAAoJEJzaiRGvDbjILRwH/0u4nuJXG6+OpZwtsQKFNaEb
+1XlrFrEr890MTzUIhNGA83NhYupX01YUmvQ/HNple8powFMCIWgQgRZ1KDev9Mtz
+Xgyp1v3MoB9TOCihl3iaP/fV+iKFTtUU/xnwxoMyfR9ZQ+UQk9mLcfLEbAO4DvsJ
+BZYIlpL59Eew0dW6gMRXaSi+pH66aHs0iH/yAJAR1HbjG4FLbHFrDnMZJtrY34HZ
+Q+wbfnw6BiZ1kWRWJADFPszuIqyFdJBfqeCHUsO0yoBaFGmbnb1k9qpA9CTI3Jb9
+rHmTkN6EJhTNoEq41eXRdTRUYKuJE6PCANzv5Cjt+JE6OVmdInAUiaQacBM1/XI=
+=BPAd
 -----END PGP SIGNATURE-----

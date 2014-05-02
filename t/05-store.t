@@ -1,4 +1,4 @@
-#	$Id: 05-store.t,v 1.4 2007-02-03 15:23:30 adam Exp $
+#	$Id: 05-store.t 49 2014-05-02 11:30:14Z adam $
 
 use strict;
 use Test;

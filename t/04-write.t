@@ -1,4 +1,4 @@
-#	$Id: 04-write.t,v 1.2 2006-02-26 21:45:04 adam Exp $
+#	$Id: 04-write.t 49 2014-05-02 11:30:14Z adam $
 
 use strict;
 use Test;

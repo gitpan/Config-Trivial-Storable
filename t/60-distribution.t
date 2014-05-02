@@ -1,10 +1,11 @@
-#   $Id: 60-distribution.t,v 1.1 2007-02-03 15:23:30 adam Exp $
+#   $Id: 60-distribution.t 49 2014-05-02 11:30:14Z adam $
 
 use Test::More;
+
 BEGIN {
     eval { require Test::Distribution; };
-    if($@) {
-        plan skip_all => 'Test::Distribution not installed';
+    if( $@ ) {
+        plan skip_all => 'Test::Distribution not installed, skipping test.';
     }
     else {
         import Test::Distribution;

@@ -1,20 +1,20 @@
-#	$Id: Storable.pm,v 1.9 2007-02-03 15:23:19 adam Exp $
+#   $Id: Storable.pm 48 2014-05-02 11:23:26Z adam $
 
 package Config::Trivial::Storable;
 
 use base qw( Config::Trivial );
 
-use 5.006;
+use 5.010;
 use strict;
 use Carp;
 use warnings;
 use Storable qw(lock_store lock_retrieve);
 
-our $VERSION = '0.30';
+our $VERSION = '0.31_1';
 my ( $_package, $_file ) = caller;
 
 #
-#	STORE
+#   STORE
 #
 
 sub store {
@@ -24,6 +24,10 @@ sub store {
     my $file = $args{'config_file'}
         || $self->{_storable_file}
         || $self->{_config_file};
+
+### TODO once Config::Trivial sets a flag to say config file has been
+### set to default put a trap in here to say no file has been specified and
+### you can't store to the default of self
 
     if (   ( ( $self->{_self} ) && ( $file =~ '\(eval ' ) )
         || ( $_file eq $file )
@@ -47,13 +51,13 @@ sub store {
             q{Configuration object isn't a HASH reference.})
     };
 
-    lock_store $settings, $file;
+    lock_store $settings, $file or croak "Unable to store to $file";
 
     return 1;
 }
 
 #
-#	RETRIEVE
+#   RETRIEVE
 #
 
 sub retrieve {
@@ -81,6 +85,7 @@ sub retrieve {
             $file = $self->{_storable_file};
         }
         else {
+            no warnings qw( uninitialized );
             if ((      ( $self->{_self} )
                     && ( defined $self->{_config_file} )
                     && ( $self->{_config_file} =~ '\(eval ' )
@@ -142,18 +147,19 @@ __END__
 
 =head1 NAME
 
-Config::Trivial::Storable - Very simple tool for reading and writing very simple Storable configuration files
+Config::Trivial::Storable - Very simple tool for reading and writing
+very simple Storable configuration files
 
 =head1 VERSION
 
-This documentation refers to Config::Trivial::Storable version 0.30
+This documentation refers to Config::Trivial::Storable version 0.31
 
 =head1 SYNOPSIS
 
   use Config::Trivial::Storable;
   my $config = Config::Trivial::Storable->new(config_file => "path/to/my/config.conf");
   my $settings = $config->retrieve;
-  print "Setting Colour is:\t", $settings->{'colour'};
+  say "Setting Colour is:\t", $settings->{'colour'};
   $settings->{'new-item'} = "New Setting";
   $settings->store;
 
@@ -189,9 +195,14 @@ To store data in the internal use the set_configuration data
 method. The option to pass a hash_ref in this method may
 be removed in future versions.
 
+If you do not specify a file name then the module will default to
+writing to the calling file - which is obviously silly and it will
+try to avoid doing this - hence the error message:
+"Can't retrieve store from the calling file.".
+
 =head2 retrieve
 
-This is the analog to read, only it reads data from a Storable binary.
+This is the analogue to read, only it reads data from a Storable binary.
 
   $config->retrieve;
 
@@ -267,7 +278,7 @@ or (at your option) any later version.
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details. 
+GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
