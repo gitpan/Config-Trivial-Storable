@@ -3,30 +3,30 @@ abstract: 'Very simple tool for reading and writing'
 author:
   - 'Adam Trickett, E<lt>atrickett@cpan.orgE<gt>'
 build_requires:
-  IO::Capture: 0
-  Pod::Coverage: 0
-  Test::More: 0
-  Test::Pod: 0
-  Test::Pod::Coverage: 0
-  YAML: 0
+  IO::Capture: '0'
+  Pod::Coverage: '0'
+  Test::More: '0'
+  Test::Pod: '0'
+  Test::Pod::Coverage: '0'
+  YAML: '0'
 configure_requires:
-  Module::Build: 0.40
+  Module::Build: '0.40'
 dynamic_config: 1
-generated_by: 'Module::Build version 0.4001, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Module::Build version 0.4003, CPAN::Meta::Converter version 2.141170'
 license: open_source
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
+  version: '1.4'
 name: Config-Trivial-Storable
 provides:
   Config::Trivial::Storable:
     file: lib/Config/Trivial/Storable.pm
-    version: 0.31_1
+    version: 0.31_2
 requires:
-  Config::Trivial: 0.60
-  Module::Build: 0.30
-  Storable: 2.24
-  perl: 5.010
+  Config::Trivial: '0.60'
+  Module::Build: '0.40'
+  Storable: '2.24'
+  perl: '5.010'
 resources:
   license: http://www.gnu.org/licenses/old-licenses/gpl-1.0.txt
-version: 0.31_1
+version: 0.31_2

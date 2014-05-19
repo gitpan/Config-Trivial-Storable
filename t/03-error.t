@@ -1,4 +1,4 @@
-#   $Id: 03-error.t 49 2014-05-02 11:30:14Z adam $
+#   $Id: 03-error.t 57 2014-05-19 19:17:51Z adam $
 use strict;
 use Test;
 use Storable qw(lock_store);
@@ -188,7 +188,13 @@ ok(-s './t/second.data', $second);
 # 70-73
 $config =  Config::Trivial::Storable->new();
 ok ($config->read);
-ok ($config->get_error() =~ 'File error: Cannot find \(eval');
+my $error = $config->get_error();
+if ( $] > 5.019 ) {
+	ok ( ! $error );
+}
+else {
+	ok ($error =~ 'File error: Cannot find \(eval');
+}
 ok (! $config->retrieve);
 ok ($config->get_error() =~ "Can't retrieve store from the calling file.");
 

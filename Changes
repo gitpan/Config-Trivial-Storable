@@ -1,6 +1,10 @@
-$Id: Changes 46 2014-05-02 11:22:14Z adam $
+$Id: Changes 57 2014-05-19 19:17:51Z adam $
 
 Revision history for Perl extension Config::Trivial::Storable
+
+0.31_2 19 May 2014
+    -   Fix for RT #95343, where Perl 5.19.x appears to change behaviour
+        and additional pre-checks are required to detect "self" calls.
 
 0.31_1 02 May 2014
     -   Minumum version of Perl 5.10 as I nolonger have access to

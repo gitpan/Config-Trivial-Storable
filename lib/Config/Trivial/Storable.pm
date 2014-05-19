@@ -1,4 +1,4 @@
-#   $Id: Storable.pm 48 2014-05-02 11:23:26Z adam $
+#   $Id: Storable.pm 57 2014-05-19 19:17:51Z adam $
 
 package Config::Trivial::Storable;
 
@@ -10,7 +10,7 @@ use Carp;
 use warnings;
 use Storable qw(lock_store lock_retrieve);
 
-our $VERSION = '0.31_1';
+our $VERSION = '0.31_2';
 my ( $_package, $_file ) = caller;
 
 #
@@ -25,11 +25,8 @@ sub store {
         || $self->{_storable_file}
         || $self->{_config_file};
 
-### TODO once Config::Trivial sets a flag to say config file has been
-### set to default put a trap in here to say no file has been specified and
-### you can't store to the default of self
-
-    if (   ( ( $self->{_self} ) && ( $file =~ '\(eval ' ) )
+    if ( (   ( $self->{_self} )
+          && ( ( $file =~ '\(eval ' ) || ( $file =~ 'base.pm' ) ) )
         || ( $_file eq $file )
         || ( $0     eq $file ) )
     {
@@ -88,7 +85,8 @@ sub retrieve {
             no warnings qw( uninitialized );
             if ((      ( $self->{_self} )
                     && ( defined $self->{_config_file} )
-                    && ( $self->{_config_file} =~ '\(eval ' )
+                    && (  ( $self->{_config_file} =~ '\(eval ' )
+                       || ( $self->{_config_file} =~ 'base.pm' ) )
                 )
                 || ( $_file eq $self->{_config_file} )
                 || ( $0     eq $self->{_config_file} )
@@ -128,10 +126,11 @@ sub set_storable_file {
     my $self               = shift;
     my $configuration_file = shift;
 
-    if ( $self->_check_file($configuration_file) ) {
+    if ( $self->_check_file( $configuration_file ) ) {
         $self->{_storable_file} = $configuration_file;
         $self->{_self}          = 0;
-        if ( $self->{_config_file} =~ '\(eval ' ) {
+        if ( ( $self->{_config_file} =~ '\(eval ' )
+                ||  ($self->{_config_file} =~ 'base.pm' ) ) {
             delete $self->{_config_file};
         }
         return $self;

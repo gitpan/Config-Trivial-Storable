@@ -1,4 +1,4 @@
-#   $Id: Build.PL 49 2014-05-02 11:30:14Z adam $;
+#   $Id: Build.PL 59 2014-05-19 19:29:27Z adam $;
 
 use Module::Build;
 
@@ -9,7 +9,7 @@ my $build = Module::Build->new(
         'perl'              => '5.010',
         'Storable'          => '2.24',
         'Config::Trivial'   => '0.60',
-        'Module::Build'     => '0.30',
+        'Module::Build'     => '0.40',
     },
     build_requires => {
         'IO::Capture'   => 0,

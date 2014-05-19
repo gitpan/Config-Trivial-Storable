@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.68.
+signed via the Module::Signature module, version 0.73.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,20 +14,20 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA256
 
-SHA1 03db46954e688ee2ca86ad0e87a9348ac4f5dc8d Build.PL
-SHA1 0b9ef126085acfc5149503a38ac1e4cd970f54d2 Changes
-SHA1 13e141d47e820d6d2b4e477e1c995ba519b64359 MANIFEST
-SHA1 95d27983c90246bc96d720e81f61bf34e6728429 META.json
-SHA1 879c47c14f5827c6a0d5e8c19d336f344ad216f6 META.yml
+SHA1 9052783375a8cfd6382c6894f8d671290288abaa Build.PL
+SHA1 aa15043d39b78174bd06a3bc8f0c398b0f3ca509 Changes
+SHA1 3f21949f9776d6376d47b9cdaab8ada6e8a8f3e6 MANIFEST
+SHA1 2cde9878767497bdbf2f634122a6a4bc7640c799 META.json
+SHA1 4eacca192614324c1673efada0ca5a3122c11c25 META.yml
 SHA1 963de1be2254ad64b49cf71ab837977adcf79b2b Makefile.PL
-SHA1 d553681cf8f6f546d11fd9a96b27a8fa6b775c66 README
+SHA1 2c852b9e63ae626bb3b523a17b50d026365f693d README
 SHA1 f094ef3b03751e1a02c680bd6761b03c86c40895 examples/example.pl
-SHA1 fc6aee06c7c1ff1f5f64b2d62d84427d7b9565fe lib/Config/Trivial/Storable.pm
+SHA1 b109b235ae921302fa43a28188dcc7a2ceabe11a lib/Config/Trivial/Storable.pm
 SHA1 dc01d1f2134e72c70ee45b0005bb8d05a980fda0 t/00-signature.t
 SHA1 b39f6160a848b11e9cbdaadcac380f9d47a525a9 t/00-use.t
-SHA1 c7a973d8f3de0d43586723bd3cb153f13ba9ff99 t/01-basic.t
+SHA1 b9770c5511f689169e0ff03790b8fd64c42b4fa5 t/01-basic.t
 SHA1 b411acd1cd01309f4e836aeb992c4ed2ee7d53ad t/02-read.t
-SHA1 032ed0a21c7627d3596d827683037056f9e6e0c0 t/03-error.t
+SHA1 5fde12a8babfc8f3890ae60e3081299f542fb7c7 t/03-error.t
 SHA1 bdfbb1d0e407daa332c9684f798daf99a6e629a7 t/04-write.t
 SHA1 dc9f1fd92833721550245912ffa034a89283c2f3 t/05-store.t
 SHA1 0bc4c74b1d073b00a418a80f4c5c71e503858de8 t/60-distribution.t
@@ -44,13 +44,13 @@ SHA1 86083544f8acad61d59330cc112e51e074849bf4 t/perlcriticrc
 SHA1 dcff37626115d479310382ea54d134316ac070f3 t/second.data
 SHA1 16e43fbdb38ed07e5916004ab5b2808ed11012bc t/test.data
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
+Version: GnuPG v1
 
-iQEcBAEBCAAGBQJTY45gAAoJEJzaiRGvDbjILRwH/0u4nuJXG6+OpZwtsQKFNaEb
-1XlrFrEr890MTzUIhNGA83NhYupX01YUmvQ/HNple8powFMCIWgQgRZ1KDev9Mtz
-Xgyp1v3MoB9TOCihl3iaP/fV+iKFTtUU/xnwxoMyfR9ZQ+UQk9mLcfLEbAO4DvsJ
-BZYIlpL59Eew0dW6gMRXaSi+pH66aHs0iH/yAJAR1HbjG4FLbHFrDnMZJtrY34HZ
-Q+wbfnw6BiZ1kWRWJADFPszuIqyFdJBfqeCHUsO0yoBaFGmbnb1k9qpA9CTI3Jb9
-rHmTkN6EJhTNoEq41eXRdTRUYKuJE6PCANzv5Cjt+JE6OVmdInAUiaQacBM1/XI=
-=BPAd
+iQEcBAEBCAAGBQJTel1WAAoJEJzaiRGvDbjIlToH/2o+VXMoW79PzLo43gqTPFlN
+L05DJdNCxWjeCqA/g5yaZhDlaAcenvFOknMYJ93Q+SJIi0CMW3NXwouEXzcTKdU6
+7S+jpU73KsfUkBOoUIdSDBHBABdKVWU5Rm2DsThedRUcNT66iCAd43pm7vvb15Zx
+wkYqpZ+ehY20hQwMfz+itJzFrQ1/7hw90Kj3n4GtOtTPLG04Snite4VHLauizf8v
+lqlVhvLnxsIyfB3m0ItH8rMOhYCR1XgB4CSw+dSyLq2zrr5shPe5vr6s4kYBCOhm
+aCPUK3QeN/M4jsZ773cAopkhCCVNjRtvD/DeLEh7Bv3FDYUvGoyIxe3+r4ZuZq0=
+=EXWd
 -----END PGP SIGNATURE-----
