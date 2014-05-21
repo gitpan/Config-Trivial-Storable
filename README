@@ -1,6 +1,6 @@
-$Id: README 57 2014-05-19 19:17:51Z adam $
+$Id: README 65 2014-05-21 22:35:09Z adam $
 
-Config::Trivial::Storable Version 0.31_2
+Config::Trivial::Storable Version 0.31_3
 ========================================
 
 This is "Yet Another" simple module to read (and write)

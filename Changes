@@ -1,6 +1,9 @@
-$Id: Changes 57 2014-05-19 19:17:51Z adam $
+$Id: Changes 65 2014-05-21 22:35:09Z adam $
 
 Revision history for Perl extension Config::Trivial::Storable
+
+0.31_3 21 May 2014
+    -   Final prep for 0.31
 
 0.31_2 19 May 2014
     -   Fix for RT #95343, where Perl 5.19.x appears to change behaviour

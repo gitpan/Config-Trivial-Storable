@@ -1,17 +1,15 @@
-#   $Id: 01-basic.t 57 2014-05-19 19:17:51Z adam $
+#   $Id: 01-basic.t 64 2014-05-21 22:34:42Z adam $
 
 use strict;
-use Test;
-BEGIN { plan tests => 4 }
+use Test::More tests => 4;
 
-use Config::Trivial::Storable;
+BEGIN { use_ok( 'Config::Trivial::Storable' ); }
 
-ok(1);
-ok($Config::Trivial::Storable::VERSION, "0.31_2");
+is( $Config::Trivial::Storable::VERSION, "0.31_3", 'Version Check' );
 
 my $config = Config::Trivial::Storable->new;
-ok(defined $config);
-ok($config->isa('Config::Trivial::Storable'));
+ok(defined $config, 'Object is defined' );
+isa_ok( $config, 'Config::Trivial::Storable', 'Oject/Class Check' );
 
 exit;
 __END__

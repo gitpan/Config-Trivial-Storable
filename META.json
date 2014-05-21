@@ -17,6 +17,7 @@
       "build" : {
          "requires" : {
             "IO::Capture" : "0",
+            "Module::Build" : "0.40",
             "Pod::Coverage" : "0",
             "Test::More" : "0",
             "Test::Pod" : "0",
@@ -31,8 +32,7 @@
       },
       "runtime" : {
          "requires" : {
-            "Config::Trivial" : "0.60",
-            "Module::Build" : "0.40",
+            "Config::Trivial" : "0.70",
             "Storable" : "2.24",
             "perl" : "5.010"
          }
@@ -41,7 +41,7 @@
    "provides" : {
       "Config::Trivial::Storable" : {
          "file" : "lib/Config/Trivial/Storable.pm",
-         "version" : "0.31_2"
+         "version" : "0.31_3"
       }
    },
    "release_status" : "testing",
@@ -50,5 +50,5 @@
          "http://www.gnu.org/licenses/old-licenses/gpl-1.0.txt"
       ]
    },
-   "version" : "0.31_2"
+   "version" : "0.31_3"
 }

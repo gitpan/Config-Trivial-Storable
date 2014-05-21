@@ -1,4 +1,4 @@
-#   $Id: Storable.pm 57 2014-05-19 19:17:51Z adam $
+#   $Id: Storable.pm 65 2014-05-21 22:35:09Z adam $
 
 package Config::Trivial::Storable;
 
@@ -10,7 +10,7 @@ use Carp;
 use warnings;
 use Storable qw(lock_store lock_retrieve);
 
-our $VERSION = '0.31_2';
+our $VERSION = '0.31_3';
 my ( $_package, $_file ) = caller;
 
 #
