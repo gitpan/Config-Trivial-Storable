@@ -1,7 +1,7 @@
-$Id: README 65 2014-05-21 22:35:09Z adam $
+$Id: README 70 2014-05-23 10:29:23Z adam $
 
-Config::Trivial::Storable Version 0.31_3
-========================================
+Config::Trivial::Storable Version 0.31
+======================================
 
 This is "Yet Another" simple module to read (and write)
 trivial configuration files. It inherits from Config::Trivial

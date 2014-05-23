@@ -2,6 +2,7 @@ Build.PL
 Changes
 examples/example.pl
 lib/Config/Trivial/Storable.pm
+LICENCE
 Makefile.PL
 MANIFEST
 META.json

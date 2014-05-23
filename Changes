@@ -1,6 +1,10 @@
-$Id: Changes 65 2014-05-21 22:35:09Z adam $
+$Id: Changes 69 2014-05-23 10:27:30Z adam $
 
 Revision history for Perl extension Config::Trivial::Storable
+
+0.31   23 May 2014
+    -   Final release after dev releases
+    -   Added LICENCE file. Note module is now Lesser GPL not GPL
 
 0.31_3 21 May 2014
     -   Final prep for 0.31

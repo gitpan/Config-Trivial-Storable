@@ -1,14 +1,17 @@
-#   $Id: Build.PL 65 2014-05-21 22:35:09Z adam $;
+#   $Id: Build.PL 74 2014-05-23 12:42:51Z adam $;
 
 use Module::Build;
 
 my $build = Module::Build->new(
     module_name => 'Config::Trivial::Storable',
-    license     => 'gpl',
+    license     => 'lgpl3',
     requires    => {
         'perl'              => '5.010',
         'Storable'          => '2.24',
         'Config::Trivial'   => '0.70',
+    },
+    configure_requires => {
+        'Module::Build'    => '0.4',
     },
     build_requires => {
         'Module::Build' => '0.40',
