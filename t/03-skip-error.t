@@ -53,7 +53,7 @@ ok($config->get_error(), 'Not allowed to write to the calling file.');
 ok($config->set_config_file(undef));
 ok($config->get_error(), 'Not allowed to write to the calling file.');
 eval { $config->write(config_file => undef) };
-ok( $@ =~ 'File error: No file name supplied at t/03-skip-error.t line' );
+ok( $@ =~ 'File error: No file name supplied at t.03-skip-error.t line' );
 ok($config->get_error(), 'Not allowed to write to the calling file.');
 $config->{_config_file} = '';
 eval { $config->write(config_file => undef) };

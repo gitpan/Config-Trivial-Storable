@@ -10,7 +10,7 @@ use Carp;
 use warnings;
 use Storable qw(lock_store lock_retrieve);
 
-our $VERSION = '0.31';
+our $VERSION = '0.32';
 my ( $_package, $_file ) = caller;
 
 #

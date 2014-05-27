@@ -22,11 +22,11 @@ name: Config-Trivial-Storable
 provides:
   Config::Trivial::Storable:
     file: lib/Config/Trivial/Storable.pm
-    version: '0.31'
+    version: '0.32'
 requires:
   Config::Trivial: '0.70'
   Storable: '2.24'
   perl: '5.010'
 resources:
   license: http://www.gnu.org/licenses/lgpl-3.0.txt
-version: '0.31'
+version: '0.32'

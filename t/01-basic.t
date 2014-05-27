@@ -5,7 +5,7 @@ use Test::More tests => 4;
 
 BEGIN { use_ok( 'Config::Trivial::Storable' ); }
 
-is( $Config::Trivial::Storable::VERSION, "0.31", 'Version Check' );
+is( $Config::Trivial::Storable::VERSION, '0.32', 'Version Check' );
 
 my $config = Config::Trivial::Storable->new;
 ok(defined $config, 'Object is defined' );
